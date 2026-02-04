@@ -1,0 +1,127 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+/// Office / transport branch
+model Office {
+  id        Int          @id @default(autoincrement())
+  name      String
+  code      String       @unique
+  isActive  Boolean      @default(true)
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+
+  workGroups   WorkGroup[]
+  serviceTypes ServiceType[]
+  bookings     Booking[]
+  dailyClosures DailyClosure[]
+  announcements Announcement[]
+}
+
+/// Logical group of services under an office
+model WorkGroup {
+  id        Int      @id @default(autoincrement())
+  name      String
+  description String?
+  officeId  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  office       Office       @relation(fields: [officeId], references: [id])
+  serviceTypes ServiceType[]
+}
+
+/// Service that can be booked (e.g. annual tax payment)
+model ServiceType {
+  id              Int                @id @default(autoincrement())
+  name            String
+  startBookingDate DateTime
+  note            String?
+  isActive        Boolean            @default(true)
+  officeId        Int
+  workGroupId     Int
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
+
+  office      Office      @relation(fields: [officeId], references: [id])
+  workGroup   WorkGroup   @relation(fields: [workGroupId], references: [id])
+  workingDays ServiceWorkingDay[]
+  bookings    Booking[]
+  dailyClosures DailyClosure[]
+}
+
+/// Weekday configuration for a service type
+model ServiceWorkingDay {
+  id            Int              @id @default(autoincrement())
+  weekday       String
+  isOpen        Boolean          @default(true)
+  serviceTypeId Int
+
+  serviceType ServiceType    @relation(fields: [serviceTypeId], references: [id])
+  timeSlots   ServiceTimeSlot[]
+}
+
+/// Multiple time slots per weekday with capacity
+model ServiceTimeSlot {
+  id             Int              @id @default(autoincrement())
+  startTime      String
+  endTime        String
+  capacity       Int
+  workingDayId   Int
+
+  workingDay ServiceWorkingDay @relation(fields: [workingDayId], references: [id])
+  bookings   Booking[]
+}
+
+/// Booking/queue entry
+model Booking {
+  id            Int      @id @default(autoincrement())
+  officeId      Int
+  serviceTypeId Int
+  timeSlotId    Int
+  date          DateTime
+  citizenId     String
+  status        String   @default("PENDING")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  office      Office         @relation(fields: [officeId], references: [id])
+  serviceType ServiceType    @relation(fields: [serviceTypeId], references: [id])
+  timeSlot    ServiceTimeSlot @relation(fields: [timeSlotId], references: [id])
+}
+
+/// Close a service type on a specific date
+model DailyClosure {
+  id            Int      @id @default(autoincrement())
+  officeId      Int
+  serviceTypeId Int
+  date          DateTime
+  reason        String?
+  createdAt     DateTime @default(now())
+
+  office      Office      @relation(fields: [officeId], references: [id])
+  serviceType ServiceType @relation(fields: [serviceTypeId], references: [id])
+}
+
+/// Announcements / public information
+model Announcement {
+  id           Int      @id @default(autoincrement())
+  officeId     Int
+  title        String
+  content      String
+  fileUrl      String?
+  publishedFrom DateTime?
+  publishedTo   DateTime?
+  createdAt    DateTime @default(now())
+
+  office Office @relation(fields: [officeId], references: [id])
+}
+

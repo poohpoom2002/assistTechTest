@@ -1,0 +1,161 @@
+.dashboard {
+    flex: 1;
+    margin-left: 250px;
+    /* Width of sidebar */
+    padding: 24px 32px;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.dashboard-header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.user-info {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+}
+
+.card-filters {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    gap: 16px;
+}
+
+.office-select {
+    width: 300px;
+    padding: 10px;
+    border-color: #ddd;
+}
+
+.search-box {
+    position: relative;
+    width: 300px;
+}
+
+.search-box input {
+    width: 100%;
+    padding-left: 36px;
+}
+
+.search-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+    font-size: 12px;
+}
+
+.action-bar {
+    margin-bottom: 20px;
+}
+
+.btn-add {
+    background-color: white;
+    color: var(--primary-green);
+    border: 1px solid var(--primary-green);
+    padding: 8px 16px;
+    font-weight: 500;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-add:hover {
+    background-color: var(--sidebar-active-bg);
+}
+
+.section-title {
+    font-size: 1rem;
+    color: #888;
+    margin-bottom: 12px;
+    font-weight: 400;
+}
+
+.service-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 24px;
+}
+
+.service-table tr {
+    border-bottom: 1px solid #eee;
+}
+
+.clickable-row {
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.clickable-row:hover {
+    background-color: #f0fdf4;
+    /* Light green hover */
+}
+
+.service-table td {
+    padding: 16px 8px;
+    font-size: 0.95rem;
+}
+
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #666;
+    border-top: 1px solid #eee;
+    padding-top: 16px;
+}
+
+.page-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.page-size {
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.page-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 16px;
+}
+
+.nav-btn {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ddd;
+    background: white;
+    color: #666;
+}
+
+.nav-btn:disabled {
+    opacity: 0.5;
+    cursor: default;
+}

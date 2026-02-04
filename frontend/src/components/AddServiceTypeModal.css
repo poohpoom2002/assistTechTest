@@ -1,0 +1,210 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-container {
+    background: white;
+    width: 900px;
+    max-width: 95vw;
+    max-height: 90vh;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.modal-header {
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+}
+
+.modal-header h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #888;
+}
+
+.modal-body {
+    padding: 30px 40px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+}
+
+.row.top-align {
+    align-items: flex-start;
+}
+
+.col-label {
+    width: 180px;
+    font-weight: 500;
+    color: var(--text-color);
+    flex-shrink: 0;
+}
+
+.col-input {
+    flex: 1;
+}
+
+.req {
+    color: var(--danger-red);
+    margin-left: 4px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.days-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.day-item {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.day-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.custom-checkbox {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary-green);
+    cursor: pointer;
+}
+
+.day-name {
+    font-size: 1rem;
+}
+
+.checked-day .day-name {
+    color: var(--text-color);
+}
+
+.time-slots-container {
+    padding-left: 32px;
+    margin-bottom: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.slot-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #fcfcfc;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.time-input {
+    width: 100px;
+}
+
+.capacity-input {
+    width: 80px;
+}
+
+.action-btn {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid;
+    border-radius: 4px;
+    background: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.add-btn {
+    border-color: var(--primary-green);
+    color: var(--primary-green);
+}
+
+.add-btn:hover {
+    background-color: var(--primary-green);
+    color: white;
+}
+
+.remove-btn {
+    border-color: var(--danger-red);
+    color: var(--danger-red);
+}
+
+.remove-btn:hover {
+    background-color: var(--danger-red);
+    color: white;
+}
+
+.error-message {
+    color: var(--danger-red);
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.modal-footer {
+    border-top: 1px solid #eee;
+    padding-top: 24px;
+    margin-top: 8px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.save-btn {
+    background-color: var(--primary-green);
+    color: white;
+    padding: 10px 32px;
+    font-size: 1rem;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.save-btn:hover {
+    background-color: var(--primary-green-hover);
+}
+
+.save-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
